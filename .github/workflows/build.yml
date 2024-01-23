@@ -31,6 +31,7 @@ jobs:
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: test-junit-report.xml
           path: _build/test/lib/sample_elx/test-junit-report.xml
