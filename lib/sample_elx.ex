@@ -15,4 +15,8 @@ defmodule SampleElx do
   def hello do
     :world
   end
+
+  def hello(name) do
+    "hello #{name}!"
+  end
 end
