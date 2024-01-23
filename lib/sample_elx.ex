@@ -15,4 +15,8 @@ defmodule SampleElx do
   def hello do
     :world
   end
+
+  def sub(a, b) do
+    a - b
+  end
 end
