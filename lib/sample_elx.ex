@@ -15,4 +15,12 @@ defmodule SampleElx do
   def hello do
     :world
   end
+
+  def sub(a, b) do
+    a - b
+  end
+
+  def add(a, b) do
+    a + b
+  end
 end
