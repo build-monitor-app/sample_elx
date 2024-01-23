@@ -1,0 +1,37 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: OTP-26.0
+          elixir-version: v1.15-otp-26
+
+      - name: Install dependencies
+        run: |
+          mix deps.get
+          mix deps.compile
+      - name: Compile
+        run: mix compile
+      - name: Run tests
+        run: mix test
+
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-junit-report.xml
+          path: _build/test/lib/sample_elx/test-junit-report.xml
+          retention-days: 30
